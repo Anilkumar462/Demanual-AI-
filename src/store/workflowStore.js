@@ -87,7 +87,7 @@ const useWorkflowStore = create((set, get) => ({
     const nodeY = node.y;
     
     // Node dimensions (approximate)
-    const nodeWidth = 150;
+    const nodeWidth = 160;
     const nodeHeight = 80;
     
     // Port positions

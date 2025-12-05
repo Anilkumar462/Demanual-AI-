@@ -72,33 +72,33 @@ const Workflow = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <h1 className="text-2xl font-bold text-gray-900">Workflow Canvas</h1>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             <button
               onClick={handleAddNode}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 whitespace-nowrap"
             >
               Add Node
             </button>
             <button
               onClick={handleResetWorkflow}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 whitespace-nowrap"
             >
               Reset Workflow
             </button>
             <button
               onClick={handleClearCanvas}
-              className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+              className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 whitespace-nowrap"
             >
               Clear Canvas
             </button>
             {currentUser.email && (
-              <span className="text-gray-700">Welcome, {currentUser.email}</span>
+              <span className="text-gray-700 hidden sm:inline">Welcome, {currentUser.email}</span>
             )}
             <button
               onClick={handleLogout}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors duration-200 whitespace-nowrap"
             >
               Logout
             </button>
@@ -107,13 +107,14 @@ const Workflow = () => {
       </header>
       <main className="flex-grow">
         <div 
-          className="h-full bg-[#f7f7f7] relative overflow-hidden"
+          className="h-full bg-[#f7f7f7] relative overflow-hidden w-full"
           style={{
             backgroundImage: `
               linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
               linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
             `,
-            backgroundSize: '20px 20px'
+            backgroundSize: '20px 20px',
+            minHeight: 'calc(100vh - 180px)'
           }}
         >
           {/* Canvas area */}
@@ -152,9 +153,9 @@ const Workflow = () => {
             
             {nodes.length === 0 && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
+                <div className="text-center p-4">
                   <p className="text-gray-500 text-lg mb-4">Click "Add Node" to start building your workflow</p>
-                  <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-md mx-auto">
                     {[1, 2, 3].map(i => (
                       <div key={i} className="bg-white border border-gray-200 rounded-xl shadow-sm p-3">
                         <div className="h-2 bg-gray-200 rounded mb-2"></div>
@@ -168,7 +169,7 @@ const Workflow = () => {
             
             {/* Connection hint */}
             {selectedNode && selectedPort && (
-              <div className="absolute bottom-4 left-4 bg-blue-100 text-blue-800 px-4 py-2 rounded-lg text-sm shadow-sm">
+              <div className="absolute bottom-4 left-4 bg-blue-100 text-blue-800 px-4 py-2 rounded-lg text-sm shadow-sm max-w-xs sm:max-w-md">
                 Selected {selectedPort} port of Node {selectedNode}. Click an {selectedPort === 'output' ? 'input' : 'output'} port to connect.
               </div>
             )}

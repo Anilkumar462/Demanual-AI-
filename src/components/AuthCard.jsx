@@ -97,6 +97,7 @@ const AuthCard = () => {
           // Switch to login view
           setIsLogin(true);
           setFormData({ email: '', password: '', confirmPassword: '' });
+          setErrors({ general: 'Account created successfully! Please login.' });
         }
       }
     }
@@ -107,22 +108,28 @@ const AuthCard = () => {
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <div className="flex mb-6 border-b">
           <button
-            className={`flex-1 py-2 font-medium ${
+            className={`flex-1 py-2 font-medium text-sm sm:text-base ${
               isLogin 
                 ? 'text-blue-600 border-b-2 border-blue-600' 
                 : 'text-gray-500 hover:text-gray-700'
             }`}
-            onClick={() => setIsLogin(true)}
+            onClick={() => {
+              setIsLogin(true);
+              setErrors({});
+            }}
           >
             Login
           </button>
           <button
-            className={`flex-1 py-2 font-medium ${
+            className={`flex-1 py-2 font-medium text-sm sm:text-base ${
               !isLogin 
                 ? 'text-blue-600 border-b-2 border-blue-600' 
                 : 'text-gray-500 hover:text-gray-700'
             }`}
-            onClick={() => setIsLogin(false)}
+            onClick={() => {
+              setIsLogin(false);
+              setErrors({});
+            }}
           >
             Sign Up
           </button>
