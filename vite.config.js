@@ -9,5 +9,8 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false
   },
-  base: './'
+  base: '/',
+  server: {
+    historyApiFallback: true
+  }
 })
